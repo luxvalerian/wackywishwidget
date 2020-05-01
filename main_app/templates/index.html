@@ -11,9 +11,10 @@
 </head>
 <body>
     <h1>Wacky Wish Widget</h1>
-    {% if widget_list|length == 0 %}
+    {% if wish_list|length == 0 %}
         <h3>no wishes to display :(</h3>
-    {% else %}
+        <hr>
+        {% else %}
         <table class="pure-table pure-table-striped">
             <thead>
                 <tr>
@@ -23,33 +24,41 @@
                 </tr>
             </thead>
             <tbody>
-                {% for widget in widget_list %}
+                {% for wish in wish_list %}
                 <tr>
-                    <td>{{widget.description}}</td>
-                    <td>{{widget.quanity}}</td>
-                    <td><a href="#">X</a></td>
+                    <td>{{ wish.description }}</td>
+                    <td>{{ wish.quanity }}</td>
+                    <td>
+                        <a href="{% url 'delete_wish' wish.id %}">X</a>
+                    </td>
                 </tr>
-                {% endfor %}
-
+                {% endfor %}            
             </tbody>
         </table>
-    {% endif %}
-    <hr />
-    <!-- form goes here -->
-    <form class="pure-form" action="/wishes/">
+        {% endif %}
 
-        <div>
-            <label for="description">Description:</label>
-            <input type="text" name="description" id="description">
-        </div>
+        <h4>Make a Wish</h4>
+        <!-- form goes here -->
+        <form class="pure-form" action="" method="post">
+            {% csrf_token %}
+            {{ wish_list.as_p }}
 
-        <div>
-            <label for="quantity">Quantity:</label>
-            <input type="text" name="quanity" id="quanity">
-        </div>
-        <button class="pure-button" type="submit">Add Wish</button>
+            
+            <div> 
+                <label for="description">Description:</label>
+                <input type="text" name="description" id="description">
+            </div>
+            
+            <div>
+                <label for="quantity">Quantity:</label>
+                <input type="text" name="quanity" id="quanity">
+            </div> 
+            
+            <!-- <input type="submit" class="btn" value="Add Wish"> -->
+
+        <button class="pure-button" type="submit">Make a Wish</button>
     </form>
-    <p>Make your wishes come true!</p>
-    <footer>All Rights Reserved, &copy; 2020 Wacky Wish Widget</footer>
+    <br>
+    <footer>All Rights Reserved. Make your wishes come true! &copy; 2020 Wacky Wish Widget</footer>
 </body>
 </html>
