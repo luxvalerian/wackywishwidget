@@ -11,7 +11,44 @@
 </head>
 <body>
     <h1>Wacky Wish Widget</h1>
+    {% if widget_list|length == 0 %}
+        <h3>no wishes to display :(</h3>
+    {% else %}
+        <table class="pure-table pure-table-striped">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Quantity</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for widget in widget_list %}
+                <tr>
+                    <td>{{widget.description}}</td>
+                    <td>{{widget.quanity}}</td>
+                    <td><a href="#">X</a></td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    {% endif %}
     <hr />
+    <!-- form goes here -->
+    <form class="pure-form" action="/wishes/">
+
+        <div>
+            <label for="description">Description:</label>
+            <input type="text" name="description" id="description">
+        </div>
+
+        <div>
+            <label for="quantity">Quantity:</label>
+            <input type="text" name="quanity" id="quanity">
+        </div>
+        <button class="pure-button" type="submit">Add Wish</button>
+    </form>
     <p>Make your wishes come true!</p>
     <footer>All Rights Reserved, &copy; 2020 Wacky Wish Widget</footer>
 </body>
