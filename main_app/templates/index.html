@@ -27,9 +27,12 @@
                 {% for wish in wish_list %}
                 <tr>
                     <td>{{ wish.description }}</td>
-                    <td>{{ wish.quanity }}</td>
+                    <td>{{ wish.quantity }}</td>
                     <td>
-                        <a href="{% url 'delete_wish' wish.id %}">X</a>
+                        <form action="{% url 'delete' wish.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="pure-button">X</button>                            
+                        </form>
                     </td>
                 </tr>
                 {% endfor %}            
@@ -39,12 +42,11 @@
 
         <h4>Make a Wish</h4>
         <!-- form goes here -->
-        <form class="pure-form" action="" method="post">
+        <form class="pure-form" action="{% url 'add_wish' %}" method="POST">
             {% csrf_token %}
-            {{ wish_list.as_p }}
+            {{ form.as_p }}
 
-            
-            <div> 
+            <!-- <div> 
                 <label for="description">Description:</label>
                 <input type="text" name="description" id="description">
             </div>
@@ -52,7 +54,7 @@
             <div>
                 <label for="quantity">Quantity:</label>
                 <input type="text" name="quanity" id="quanity">
-            </div> 
+            </div>  -->
             
             <!-- <input type="submit" class="btn" value="Add Wish"> -->
 

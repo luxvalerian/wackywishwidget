@@ -3,5 +3,6 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('wishes/<int:wish_id>', views.delete, name="delete"),
+    path('add_wish/', views.add_wish, name='add_wish' ),
+    path('<int:wish_id>/delete/', views.delete, name='delete'),
 ]
