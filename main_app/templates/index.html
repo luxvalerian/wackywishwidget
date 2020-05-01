@@ -45,19 +45,6 @@
         <form class="pure-form" action="{% url 'add_wish' %}" method="POST">
             {% csrf_token %}
             {{ form.as_p }}
-
-            <!-- <div> 
-                <label for="description">Description:</label>
-                <input type="text" name="description" id="description">
-            </div>
-            
-            <div>
-                <label for="quantity">Quantity:</label>
-                <input type="text" name="quanity" id="quanity">
-            </div>  -->
-            
-            <!-- <input type="submit" class="btn" value="Add Wish"> -->
-
         <button class="pure-button" type="submit">Make a Wish</button>
     </form>
     <br>
