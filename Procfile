@@ -1,1 +1,1 @@
-web: gunicorn wishwidget.wishwidget.wsgi
+web: gunicorn wishwidget.wsgi
